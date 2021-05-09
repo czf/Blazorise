@@ -37,9 +37,6 @@
 				<Button Color="Color.Primary" Outline="true" Clicked="@(async () => await HandleRedraw( pieChart, GetPieChartDataset ))">Redraw</Button>
 				<Button Color="Color.Primary" Outline="true"  Clicked="@(async () =>
 																		 {
-																			 
-																						
-                                                                             //await InvokeAsync(StateHasChanged);
                                                                              await pieChart.SetOptionsObject(chartOptionsObj = new
 																			 {
 																				 AspectRatio = .1
