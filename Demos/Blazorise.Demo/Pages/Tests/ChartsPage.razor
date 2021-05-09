@@ -33,11 +33,26 @@
             <CardHeader>
                 <CardTitle>Pie</CardTitle>
             </CardHeader>
+			<CardBody>
+				<Button Color="Color.Primary" Outline="true" Clicked="@(async () => await HandleRedraw( pieChart, GetPieChartDataset ))">Redraw</Button>
+				<Button Color="Color.Primary" Outline="true"  Clicked="@(async () =>
+																		 {
+																			 
+																						
+                                                                             //await InvokeAsync(StateHasChanged);
+                                                                             await pieChart.SetOptionsObject(chartOptionsObj = new
+																			 {
+																				 AspectRatio = .1
+																			 });
+																			 await pieChart.Update();
+																			 await pieChart.Resize();
+
+
+
+																		 })">Resize</Button>
+			</CardBody>
             <CardBody>
-                <Button Color="Color.Primary" Outline="true" Clicked="@(async () => await HandleRedraw( pieChart, GetPieChartDataset ))">Redraw</Button>
-            </CardBody>
-            <CardBody>
-                <Chart @ref="pieChart" Type="ChartType.Pie" TItem="double" />
+                <Chart @ref="pieChart" Type="ChartType.Pie" OptionsObject="chartOptionsObj" TItem="double" />
             </CardBody>
         </Card>
     </Column>
@@ -105,6 +120,12 @@
     Chart<double> radarChart;
 
     LineChart<double> lineChartWithData;
+
+    object chartOptionsObj = new
+    {
+        AspectRatio = 2
+    };
+
 
     string[] Labels = { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" };
     List<string> backgroundColors = new List<string> { ChartColor.FromRgba( 255, 99, 132, 0.2f ), ChartColor.FromRgba( 54, 162, 235, 0.2f ), ChartColor.FromRgba( 255, 206, 86, 0.2f ), ChartColor.FromRgba( 75, 192, 192, 0.2f ), ChartColor.FromRgba( 153, 102, 255, 0.2f ), ChartColor.FromRgba( 255, 159, 64, 0.2f ) };
